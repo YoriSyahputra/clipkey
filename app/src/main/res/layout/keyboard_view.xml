@@ -3,30 +3,132 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:background="#181825"
-    android:padding="4dp">
+    android:background="#1E1E2E">
 
-    <!-- Bar horizontal riwayat klip (posisi di atas tombol) -->
-    <HorizontalScrollView
+    <!-- 1. Toolbar Atas (Mirip Gboard / SwiftKey) -->
+    <LinearLayout
+        android:id="@+id/topToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="#181825"
+        android:paddingHorizontal="6dp">
+
+        <Button
+            android:id="@+id/btnOpenClipboard"
+            android:layout_width="44dp"
+            android:layout_height="36dp"
+            android:text="📋"
+            android:textSize="18sp"
+            android:background="@android:color/transparent"
+            android:textColor="#BAC2DE" />
+
+        <HorizontalScrollView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:id="@+id/layoutClipsQuick"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:orientation="horizontal" />
+        </HorizontalScrollView>
+    </LinearLayout>
+
+    <!-- 2. Kontainer Tombol QWERTY -->
+    <LinearLayout
+        android:id="@+id/containerKeyboard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:scrollbars="none"
-        android:paddingTop="4dp"
-        android:paddingBottom="6dp">
+        android:orientation="vertical"
+        android:padding="2dp" />
 
+    <!-- 3. Kontainer Panel Clipboard Lengkap (Mirip Foto 3) -->
+    <LinearLayout
+        android:id="@+id/containerClipboardPanel"
+        android:layout_width="match_parent"
+        android:layout_height="280dp"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:background="#181825"
+        android:padding="8dp">
+
+        <!-- Bar Atas Panel: Tombol Back & Kolom Search -->
         <LinearLayout
-            android:id="@+id/layoutClips"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:gravity="center_vertical" />
-    </HorizontalScrollView>
+            android:gravity="center_vertical">
 
-    <!-- Wadah dinamis untuk tombol QWERTY -->
-    <LinearLayout
-        android:id="@+id/layoutKeyboardRows"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical" />
+            <Button
+                android:id="@+id/btnCloseClipboard"
+                android:layout_width="40dp"
+                android:layout_height="38dp"
+                android:text="←"
+                android:textSize="20sp"
+                android:textColor="#BAC2DE"
+                android:background="@android:color/transparent" />
+
+            <EditText
+                android:id="@+id/etSearchClip"
+                android:layout_width="0dp"
+                android:layout_height="38dp"
+                android:layout_weight="1"
+                android:hint="Cari ribuan riwayat klip..."
+                android:textColorHint="#6C7086"
+                android:textColor="#CDD6F4"
+                android:textSize="13sp"
+                android:background="@drawable/chip_bg"
+                android:paddingHorizontal="12dp"
+                android:singleLine="true" />
+        </LinearLayout>
+
+        <!-- Tombol Filter Cepat -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="6dp">
+
+            <Button
+                android:id="@+id/btnFilterAll"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:text="Semua"
+                android:textSize="11sp"
+                android:textColor="#CDD6F4"
+                android:background="@drawable/chip_bg"
+                android:paddingHorizontal="12dp" />
+
+            <Button
+                android:id="@+id/btnFilterPinned"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:text="📌 Disematkan"
+                android:textSize="11sp"
+                android:textColor="#CDD6F4"
+                android:background="@drawable/chip_bg"
+                android:layout_marginStart="8dp"
+                android:paddingHorizontal="12dp" />
+        </LinearLayout>
+
+        <!-- Daftar Vertikal Klip Tersimpan -->
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginTop="6dp">
+
+            <LinearLayout
+                android:id="@+id/layoutClipsList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+        </ScrollView>
+    </LinearLayout>
 
 </LinearLayout>
